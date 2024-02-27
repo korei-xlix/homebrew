@@ -602,10 +602,13 @@ else
   echo "MYBREW_TEST = ${MYBREW_TEST}"
   echo "HOMEBREW_CURL_PATH = ${HOMEBREW_CURL_PATH}"
 
+  MYBREW_TEST=1
+  echo "MYBREW_TEST = ${MYBREW_TEST}"
+
   HOMEBREW_PRODUCT="${HOMEBREW_SYSTEM}brew"
   # Don't try to follow /etc/os-release
   # shellcheck disable=SC1091,SC2154
-  if [[ -n "${HOMEBREW_LINUX}" ]] && HOMEBREW_OS_VERSION="$(source /etc/os-release && echo "${PRETTY_NAME}")"
+  [[ -n "${HOMEBREW_LINUX}" ]] && HOMEBREW_OS_VERSION="$(source /etc/os-release && echo "${PRETTY_NAME}")"
   : "${HOMEBREW_OS_VERSION:=$(uname -r)}"
   HOMEBREW_OS_USER_AGENT_VERSION="${HOMEBREW_OS_VERSION}"
 

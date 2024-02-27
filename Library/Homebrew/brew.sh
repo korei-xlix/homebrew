@@ -614,6 +614,8 @@ else
   # Ensure the system Curl is a version that supports modern HTTPS certificates.
   HOMEBREW_MINIMUM_CURL_VERSION="7.41.0"
 
+  curl_version_test="$(${HOMEBREW_CURL} --version)"
+
   curl_version_output="$(${HOMEBREW_CURL} --version 2>/dev/null)"
   curl_name_and_version="${curl_version_output%% (*}"
 
@@ -624,6 +626,7 @@ else
     printf "HOMEBREW_CURL = ${HOMEBREW_CURL}\n"
     printf "curl_version_output   = ${curl_version_output}\n"
     printf "curl_name_and_version = ${curl_name_and_version}\n"
+    printf "curl_version_test     = ${curl_version_test}\n"
   fi
   #################################
 

@@ -597,7 +597,10 @@ then
 else
 
 #################################
-  printf "@@@@@@ START @@@@@@\n"
+  if [[ $MYBREW_TEST -eq "1" ]]
+  then
+    printf "@@@@@@ START @@@@@@\n"
+  fi
 
   HOMEBREW_PRODUCT="${HOMEBREW_SYSTEM}brew"
   # Don't try to follow /etc/os-release
@@ -609,14 +612,18 @@ else
   # Ensure the system Curl is a version that supports modern HTTPS certificates.
   HOMEBREW_MINIMUM_CURL_VERSION="7.41.0"
 
-  curl_version_output="$(${HOMEBREW_CURL} --version 2>/dev/null)"
+###  curl_version_output="$(${HOMEBREW_CURL} --version 2>/dev/null)"
+  curl_version_output=$(${HOMEBREW_CURL} --version 2>/dev/null)
   curl_name_and_version="${curl_version_output%% (*}"
 
   #################################
-  printf "\nxxx0001\n"
-  printf "HOMEBREW_CURL = ${HOMEBREW_CURL}\n"
-  printf "curl_version_output   = ${curl_version_output}\n"
-  printf "curl_name_and_version = ${curl_name_and_version}\n"
+  if [[ $MYBREW_TEST -eq "1" ]]
+  then
+    printf "\nxxx0001\n"
+    printf "HOMEBREW_CURL = ${HOMEBREW_CURL}\n"
+    printf "curl_version_output   = ${curl_version_output}\n"
+    printf "curl_name_and_version = ${curl_name_and_version}\n"
+  fi
   #################################
 
   # shellcheck disable=SC2248
@@ -641,7 +648,11 @@ Your curl executable: $(type -p "${HOMEBREW_CURL}")"
     fi
   fi
 
-  printf "@@@@@@ START @@@@@@"
+  #################################
+  if [[ $MYBREW_TEST -eq "1" ]]
+  then
+    printf "@@@@@@ END @@@@@@\n"
+  fi
 #################################
 
   # Ensure the system Git is at or newer than the minimum required version.

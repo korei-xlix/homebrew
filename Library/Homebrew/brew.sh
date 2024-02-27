@@ -595,6 +595,10 @@ then
     fi
   fi
 else
+
+#################################
+  printf "@@@@@@ START @@@@@@\n"
+
   HOMEBREW_PRODUCT="${HOMEBREW_SYSTEM}brew"
   # Don't try to follow /etc/os-release
   # shellcheck disable=SC1091,SC2154
@@ -607,6 +611,14 @@ else
 
   curl_version_output="$(${HOMEBREW_CURL} --version 2>/dev/null)"
   curl_name_and_version="${curl_version_output%% (*}"
+
+  #################################
+  printf "\nxxx0001\n"
+  printf "HOMEBREW_CURL = ${HOMEBREW_CURL}\n"
+  printf "curl_version_output   = ${curl_version_output}\n"
+  printf "curl_name_and_version = ${curl_name_and_version}\n"
+  #################################
+
   # shellcheck disable=SC2248
   if [[ "$(numeric "${curl_name_and_version##* }")" -lt "$(numeric "${HOMEBREW_MINIMUM_CURL_VERSION}")" ]]
   then
@@ -628,6 +640,9 @@ Your curl executable: $(type -p "${HOMEBREW_CURL}")"
       odie "${message}"
     fi
   fi
+
+  printf "@@@@@@ START @@@@@@"
+#################################
 
   # Ensure the system Git is at or newer than the minimum required version.
   # Git 2.7.4 is the version of git on Ubuntu 16.04 LTS (Xenial Xerus).

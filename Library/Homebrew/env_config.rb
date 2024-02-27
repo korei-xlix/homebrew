@@ -401,6 +401,11 @@ module Homebrew
                      "useful to avoid long-running Homebrew commands being killed due to no output.",
         boolean:     true,
       },
+#########
+      MYBREW_TEST:               {
+        description: "Test flag.."
+      },
+#########
       SUDO_ASKPASS:                              {
         description: "If set, pass the `-A` option when calling `sudo`(8).",
       },

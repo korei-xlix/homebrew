@@ -602,11 +602,6 @@ else
   echo "MYBREW_TEST = ${MYBREW_TEST}"
   echo "HOMEBREW_CURL_PATH = ${HOMEBREW_CURL_PATH}"
 
-  if [[ ${MYBREW_TEST} -eq 1 ]]
-  then
-    printf "@@@@@@ START @@@@@@\n"
-  fi
-
   HOMEBREW_PRODUCT="${HOMEBREW_SYSTEM}brew"
   # Don't try to follow /etc/os-release
   # shellcheck disable=SC1091,SC2154
@@ -622,13 +617,10 @@ else
   curl_name_and_version="${curl_version_output%% (*}"
 
   #################################
-  if [[ ${MYBREW_TEST} -eq 1 ]]
-  then
-    printf "\nxxx0001\n"
-    printf "HOMEBREW_CURL = ${HOMEBREW_CURL}\n"
-    printf "curl_version_output   = ${curl_version_output}\n"
-    printf "curl_name_and_version = ${curl_name_and_version}\n"
-  fi
+  printf "\nxxx0001\n"
+  printf "HOMEBREW_CURL = ${HOMEBREW_CURL}\n"
+  printf "curl_version_output   = ${curl_version_output}\n"
+  printf "curl_name_and_version = ${curl_name_and_version}\n"
   #################################
 
   # shellcheck disable=SC2248
@@ -654,10 +646,7 @@ Your curl executable: $(type -p "${HOMEBREW_CURL}")"
   fi
 
   #################################
-  if [[ ${MYBREW_TEST} -eq 1 ]]
-  then
-    printf "@@@@@@ END @@@@@@\n"
-  fi
+  printf "@@@@@@ END @@@@@@\n"
 #################################
 
   # Ensure the system Git is at or newer than the minimum required version.

@@ -599,11 +599,11 @@ else
 #################################
 
   echo "@@@@@@ START @@@@@@\n"
-  echo "MYBREW_TEST = ${MYBREW_TEST}"
+  echo "HOMEBREW_MY_TEST = ${HOMEBREW_MY_TEST}"
   echo "HOMEBREW_CURL_PATH = ${HOMEBREW_CURL_PATH}"
 
-  MYBREW_TEST=1
-  echo "MYBREW_TEST = ${MYBREW_TEST}"
+  HOMEBREW_MY_TEST=1
+  echo "HOMEBREW_MY_TEST = ${HOMEBREW_MY_TEST}"
 
   HOMEBREW_PRODUCT="${HOMEBREW_SYSTEM}brew"
   # Don't try to follow /etc/os-release

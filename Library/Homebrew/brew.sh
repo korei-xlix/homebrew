@@ -598,9 +598,9 @@ else
 
 #################################
 
-  printf "MYBREW_TEST = $MYBREW_TEST\n"
+  printf "MYBREW_TEST = ${MYBREW_TEST}\n"
 
-  if [[ $MYBREW_TEST -eq 1 ]]
+  if [[ ${MYBREW_TEST} -eq 1 ]]
   then
     printf "@@@@@@ START @@@@@@\n"
   fi
@@ -620,7 +620,7 @@ else
   curl_name_and_version="${curl_version_output%% (*}"
 
   #################################
-  if [[ $MYBREW_TEST -eq 1 ]]
+  if [[ ${MYBREW_TEST} -eq 1 ]]
   then
     printf "\nxxx0001\n"
     printf "HOMEBREW_CURL = ${HOMEBREW_CURL}\n"
@@ -652,7 +652,7 @@ Your curl executable: $(type -p "${HOMEBREW_CURL}")"
   fi
 
   #################################
-  if [[ $MYBREW_TEST -eq 1 ]]
+  if [[ ${MYBREW_TEST} -eq 1 ]]
   then
     printf "@@@@@@ END @@@@@@\n"
   fi

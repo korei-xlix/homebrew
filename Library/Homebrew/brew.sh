@@ -598,7 +598,7 @@ else
 
 #################################
 
-  printf "MYBREW_TEST = ${MYBREW_TEST}\n"
+  echo ${MYBREW_TEST}
 
   if [[ ${MYBREW_TEST} -eq 1 ]]
   then

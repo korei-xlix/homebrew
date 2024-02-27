@@ -597,6 +597,9 @@ then
 else
 
 #################################
+
+  printf "MYBREW_TEST = $MYBREW_TEST\n"
+
   if [[ $MYBREW_TEST -eq 1 ]]
   then
     printf "@@@@@@ START @@@@@@\n"

@@ -598,7 +598,9 @@ else
 
 #################################
 
-  echo ${MYBREW_TEST}
+  echo "@@@@@@ START @@@@@@\n"
+  echo "MYBREW_TEST = ${MYBREW_TEST}"
+  echo "HOMEBREW_CURL_PATH = ${HOMEBREW_CURL_PATH}"
 
   if [[ ${MYBREW_TEST} -eq 1 ]]
   then

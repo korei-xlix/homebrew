@@ -597,13 +597,12 @@ then
 else
 
 #################################
-
-  echo "@@@@@@ START @@@@@@\n"
-  echo "HOMEBREW_MY_TEST = ${HOMEBREW_MY_TEST}"
-  echo "HOMEBREW_CURL_PATH = ${HOMEBREW_CURL_PATH}"
-
-  HOMEBREW_MY_TEST=1
-  echo "HOMEBREW_MY_TEST = ${HOMEBREW_MY_TEST}"
+  if [[ ${HOMEBREW_MY_TEST} -eq 1 ]]
+  then
+    echo "\n@@@@@@ START @@@@@@"
+    echo "HOMEBREW_MY_TEST = ${HOMEBREW_MY_TEST}"
+    echo "HOMEBREW_CURL_PATH = ${HOMEBREW_CURL_PATH}"
+  fi
 
   HOMEBREW_PRODUCT="${HOMEBREW_SYSTEM}brew"
   # Don't try to follow /etc/os-release
@@ -615,15 +614,17 @@ else
   # Ensure the system Curl is a version that supports modern HTTPS certificates.
   HOMEBREW_MINIMUM_CURL_VERSION="7.41.0"
 
-###  curl_version_output="$(${HOMEBREW_CURL} --version 2>/dev/null)"
-  curl_version_output=$(${HOMEBREW_CURL} --version 2>/dev/null)
+  curl_version_output="$(${HOMEBREW_CURL} --version 2>/dev/null)"
   curl_name_and_version="${curl_version_output%% (*}"
 
   #################################
-  printf "\nxxx0001\n"
-  printf "HOMEBREW_CURL = ${HOMEBREW_CURL}\n"
-  printf "curl_version_output   = ${curl_version_output}\n"
-  printf "curl_name_and_version = ${curl_name_and_version}\n"
+  if [[ ${HOMEBREW_MY_TEST} -eq 1 ]]
+  then
+    printf "\nxxx0001\n"
+    printf "HOMEBREW_CURL = ${HOMEBREW_CURL}\n"
+    printf "curl_version_output   = ${curl_version_output}\n"
+    printf "curl_name_and_version = ${curl_name_and_version}\n"
+  fi
   #################################
 
   # shellcheck disable=SC2248
@@ -640,16 +641,35 @@ Your curl executable: $(type -p "${HOMEBREW_CURL}")"
       HOMEBREW_FORCE_BREWED_CURL=1
       if [[ -z ${HOMEBREW_CURL_WARNING} ]]
       then
+
+        #################################
+        if [[ ${HOMEBREW_MY_TEST} -eq 1 ]]
+        then
+          echo "xxx0002"
+        fi
+        #################################
+
         onoe "${message}"
         HOMEBREW_CURL_WARNING=1
       fi
     else
+
+      #################################
+      if [[ ${HOMEBREW_MY_TEST} -eq 1 ]]
+      then
+        echo "xxx0003"
+      fi
+      #################################
+
       odie "${message}"
     fi
   fi
 
   #################################
-  printf "@@@@@@ END @@@@@@\n"
+  if [[ ${HOMEBREW_MY_TEST} -eq 1 ]]
+  then
+    echo "\n@@@@@@ END @@@@@@"
+  fi
 #################################
 
   # Ensure the system Git is at or newer than the minimum required version.
